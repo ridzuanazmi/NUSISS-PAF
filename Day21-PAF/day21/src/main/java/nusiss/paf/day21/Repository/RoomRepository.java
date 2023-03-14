@@ -84,7 +84,6 @@ public class RoomRepository implements RoomRepositoryImpl {
     public int update(Room room) {
 
         int updated = 0;
-
         updated = jdbcTemplate.update(updateSQL, new PreparedStatementSetter() {
 
             @Override
@@ -96,7 +95,6 @@ public class RoomRepository implements RoomRepositoryImpl {
         return updated;
     }
 
-    @Override
     public int deleteById(Integer id) {
         
         int deleted = 0;

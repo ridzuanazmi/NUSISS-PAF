@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmployeeList</title>
+</head>
+<body>
+    <h1>List of Employees</h1>
+
+    <a th:href="@{/employees/addNew}"><button>Create new employee</button></a>
+    
+    
+    <div th:if="${employees.size() > 0}">
+        <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>salary</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.salary}"></td>
+                    <td>
+                        <a th:href="@{/employees/delete/{id}(id=${employee.id})}"><button>Delete</button></a>
+                        <a th:href="@{/employees/update/{id}(id=${employee.id})}"><button>Edit</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

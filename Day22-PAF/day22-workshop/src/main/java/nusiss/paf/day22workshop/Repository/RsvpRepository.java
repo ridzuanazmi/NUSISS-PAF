@@ -86,7 +86,5 @@ public class RsvpRepository {
                 return rsvpList.size();
             }
         });
-    }
-
-    // Update a 
+    } 
 }
