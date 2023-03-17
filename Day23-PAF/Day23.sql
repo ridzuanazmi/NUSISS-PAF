@@ -93,8 +93,10 @@ insert into dependent (employee_id, full_name, relationship, birthdate) values (
 insert into dependent (employee_id, full_name, relationship, birthdate) values (5, 'cabello', 'son', '1992-10-25');
 
 -- ---------------------- update employee/dependent ------------------------------------------
-update employee set first_name = ?, last_name = ?, salary = ? where id = ?;
-update dependent set employee_id= 1, full_name = 'akhtar khan', relationship = 'godfather', birthdate = '1995-04-06' where id = 2;
+update employee set first_name = ?, last_name = ?, salary = ? 
+where id = ?;
+update dependent set employee_id= 1, full_name = 'akhtar khan', relationship = 'godfather', birthdate = '1995-04-06' 
+where id = 2;
 
 -- ---------------------- delete employee/dependent ------------------------------------------
 delete from employee where id = 1;

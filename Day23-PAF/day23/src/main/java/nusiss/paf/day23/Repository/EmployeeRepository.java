@@ -54,7 +54,6 @@ public class EmployeeRepository {
     public Boolean createEmp(Employee employee) {
 
         Boolean isSaved = false;
-
         PreparedStatementCallback<Boolean> psc = new PreparedStatementCallback<Boolean>() {
 
             @Override
@@ -97,7 +96,7 @@ public class EmployeeRepository {
         // there are still dependent records referencing it in the "dependent" table
         int isDeleted = 0;
 
-        // Must allow the id to be set as null instead of not null.
+        // Delete the dependent first before deleting the employee due to the foreign key constraint
         jdbcTemplate.update(deleteDepByEmpIdSQL, id);
 
         PreparedStatementSetter pss = new PreparedStatementSetter() {
