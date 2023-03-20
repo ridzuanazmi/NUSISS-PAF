@@ -23,37 +23,34 @@ public class BookResvService {
     @Autowired
     BookResvRepo bookResvRepo;
 
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRED)
-    public Boolean reserveBook(List<Book> books, String reservePersonName) {
+        @Transactional(isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRED)
+        public Boolean reserveBook(List<Book> books, String reservePersonName) {
 
-        Boolean isReservationCompleted = false;
+            Boolean isReservationCompleted = false;
 
-        // Check for book availability by quantity
-        Boolean isBookAvailable = false;
-        List<Book> bookList = bookResvRepo.findAllBook();
+            // Check for book availability by quantity
+            List<Book> bookList = bookResvRepo.findAllBook();
 
-        for (Book book : books) { // Go through the book list that is sent to the API
+            for (Book book : books) { // Go through the book list that is sent to the API
 
-            // Filter out the book that is sent as a request body to ensure it matches with the book table records
-            List<Book> filteredBook = bookList.stream().filter(b -> b.getId().equals(book.getId()) && b.getTitle().equals(book.getTitle()))
-                .collect(Collectors.toList());
+                // Filter out the book that is sent as a request body to ensure it matches with
+                // the book table records
+                List<Book> filteredBook = bookList.stream().filter(b -> b.getId().equals(book.getId()) && b.getTitle().equals(book.getTitle()))
+                        .collect(Collectors.toList());
 
-            // If books available, minus the quantity from the book (requires transaction)
-            if (!filteredBook.isEmpty()) {
-                if (0 == filteredBook.get(0).getQuantity()) {
-                    isBookAvailable = false;
-                    break;
+                // If books available, minus the quantity from the book (requires transaction)
+                if (!filteredBook.isEmpty()) {
+                    if (0 == filteredBook.get(0).getQuantity()) {
+                        throw new BookException("Book is not available"); 
+                    } else {
+                        // quantity update marker to decrease the book quantity by 1
+                        bookResvRepo.updateBookQuantity(book.getId());
+                    }
                 } else {
-                    // quantity update marker
-                    bookResvRepo.updateBookQuantity(book.getId());
+                    throw new BookException("Book id and title mismatch");
                 }
-            } else {
-                isBookAvailable = false;
-                break;
             }
-        }
-        if (!isBookAvailable) {
-            // create the reservation record (requires transaction)
+
             Resv resv = new Resv();
             resv.setFullName(reservePersonName);
             resv.setResvDate(Date.valueOf(LocalDate.now()));
@@ -64,13 +61,10 @@ public class BookResvService {
                 ResvDetails resvDetails = new ResvDetails();
                 resvDetails.setBookId(book.getId());
                 resvDetails.setResvId(reservationId);
-
                 bookResvRepo.createResvDetail(resvDetails);
             }
+
             isReservationCompleted = true;
-
-        } 
-
-        return isReservationCompleted;
-    }
+            return isReservationCompleted;
+        }
 }

@@ -15,6 +15,13 @@ import org.springframework.web.client.RestTemplate;
 
 import nusiss.paf.day24lecture.Model.Employee;
 
+// --------------------------------------------------------------- Link to Day23 PAF!!! ------------------------------------------------------------------------------
+/*
+ * Need to create an API first, similar to Day23 PAF
+ * Once that is done, can create HTML forms and table to populate/send data to the API
+ * Both java programs must be running
+ */
+
 @Repository
 public class EmployeeRepository {
 
