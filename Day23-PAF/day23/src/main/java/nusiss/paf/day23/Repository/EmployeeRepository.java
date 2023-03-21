@@ -73,7 +73,6 @@ public class EmployeeRepository {
     public int updateEmp(Employee employee) {
 
         int isUpdated = 0;
-
         isUpdated = jdbcTemplate.update(updateSQL, new PreparedStatementSetter() {
 
             @Override
