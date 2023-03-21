@@ -18,7 +18,7 @@ import nusiss.paf.day22revision.Model.Rsvp;
 import nusiss.paf.day22revision.Service.RsvpService;
 
 @RestController
-public class RsvpController {
+public class RsvpRestController {
     
     @Autowired
     RsvpService rsvpSrvc;
