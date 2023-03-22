@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import nusiss.paf.day22revision.Model.Rsvp;
@@ -52,7 +53,6 @@ public class RsvpRepository {
 
     // Method2 to create new rsvp using PSS
     public Boolean createRsvp2(Rsvp rsvp) {
-
         PreparedStatementCallback<Boolean> psc = new PreparedStatementCallback<Boolean>() {
 
             @Override
@@ -76,6 +76,25 @@ public class RsvpRepository {
         Integer isUpdated = jdbcTemplate.update(UPDATE_RSVP_BYID_SQL, 
                 rsvp.getFullName(), rsvp.getEmail(), rsvp.getPhone(), rsvp.getConfirmationDate(), rsvp.getComments(), rsvp.getId());
 
+        return isUpdated > 0;
+    }
+
+    // Method2 to update rsvp using PreparedStatement to prevent hacking.
+    public Boolean updateRsvp2(Rsvp rsvp) {
+
+        int isUpdated = 0;
+        isUpdated = jdbcTemplate.update(UPDATE_RSVP_BYID_SQL, new PreparedStatementSetter() {
+
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1, rsvp.getFullName());
+                ps.setString(2, rsvp.getEmail());
+                ps.setString(3, rsvp.getPhone());
+                ps.setDate(4, rsvp.getConfirmationDate());
+                ps.setString(5, rsvp.getComments());
+                ps.setInt(6, rsvp.getId());
+            }
+        });
         return isUpdated > 0;
     }
 

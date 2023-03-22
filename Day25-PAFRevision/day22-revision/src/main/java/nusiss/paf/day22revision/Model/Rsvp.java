@@ -2,13 +2,25 @@ package nusiss.paf.day22revision.Model;
 
 import java.sql.Date;
 
+import jakarta.validation.constraints.NotNull;
+
 public class Rsvp {
     
     private int id;
+    
+    @NotNull(message = "Required field")
     private String fullName;
+
+    @NotNull(message = "Required field")
     private String email;
+
+    @NotNull(message = "Required field")
     private String phone;
+
+    @NotNull(message = "Required field")
     private Date confirmationDate;
+
+    @NotNull(message = "Required field")
     private String comments;
 
     public Rsvp() {
@@ -58,6 +70,12 @@ public class Rsvp {
     }
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Rsvp [id=" + id + ", fullName=" + fullName + ", email=" + email + ", phone=" + phone
+                + ", confirmationDate=" + confirmationDate + ", comments=" + comments + "]";
     }
 
 

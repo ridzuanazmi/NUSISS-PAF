@@ -30,8 +30,15 @@ public class RsvpService {
         return rsvpRepo.createRsvp1(rsvp);
     }
 
+    public Boolean createRsvp2(Rsvp rsvp) {
+        return rsvpRepo.createRsvp2(rsvp);
+    }
+
     public Boolean updateRsvp1(Rsvp rsvp) {
         return rsvpRepo.updateRsvp1(rsvp);
+    }
+    public Boolean updateRsvp2(Rsvp rsvp) {
+        return rsvpRepo.updateRsvp2(rsvp);
     }
 
     public Boolean deleteRsvpById(Integer id) {

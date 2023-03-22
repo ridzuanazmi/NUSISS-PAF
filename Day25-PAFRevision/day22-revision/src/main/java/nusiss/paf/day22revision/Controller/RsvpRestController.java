@@ -54,7 +54,7 @@ public class RsvpRestController {
     @PostMapping("/api/rsvp")
     public ResponseEntity<?> createRsvp(@RequestBody Rsvp rsvp) {
 
-        Boolean isCreated = rsvpSrvc.createRsvp1(rsvp);
+        Boolean isCreated = rsvpSrvc.createRsvp2(rsvp);
 
         if (isCreated) {
             return ResponseEntity.ok()

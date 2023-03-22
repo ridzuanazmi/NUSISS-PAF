@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <title>RSVP</title>
+    <title>RSVP Update Form</title>
 </head>
-
 <body>
-    <h3 class="text-center mt-5">RSVP FORM</h3>
+    <h3 class="text-center mt-5">RSVP UPDATE FORM</h3>
     <div class="container">
-        <form th:action="@{/rsvps/create}" method="post" th:object="${rsvp}">
+        <form th:action="@{/rsvps/update}" method="post" th:object="${rsvps}">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input class="form-control" type="text" id="name" th:field="*{fullName}"
@@ -48,11 +46,14 @@
                 <div class="alert alert-danger" th:if="${#fields.hasErrors('comments')}" th:errors="*{comments}"
                     data-th-errorclass="error"></div>
             </div>
+            <div class="form-group d-none">
+                <label for="id">ID:</label>
+                <input class="form-control" type="number" id="id" th:field="*{id}"
+                    placeholder="Your ID">
+            </div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </div>
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -64,5 +65,4 @@
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
 </body>
-
 </html>
