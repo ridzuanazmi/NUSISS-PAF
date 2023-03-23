@@ -36,7 +36,7 @@ public class EmployeeRepository {
 
     private final String findInnjerJoinByIdSQL = "select emp.id, emp.first_name, emp.last_name, emp.salary," +
             "dep.id dep_id, dep.full_name dep_full_name, dep.relationship, dep.birthdate " +
-            "from employee as emp left join dependent as dep on emp.id = dep.employee_id where emp.id = ?";
+            "from employee as emp left join dependent as dep on emp.id = dep.employee_id where emp.id   = ?";
     private final String findEmpByIdSQL = "select * from employee where id = ?";
 
     private final String insertSQL = "insert into employee (first_name, last_name, salary) values (?, ?, ?)";
@@ -113,6 +113,7 @@ public class EmployeeRepository {
     // Methods below show different way to get inner join tables with one to many cardinality
     public List<Employee> findAllWithDep1() {
         List<Employee> employees = jdbcTemplate.query(findAllInnerJoinSQL, new ResultSetExtractor<List<Employee>>() {
+            
             @Override
             public List<Employee> extractData(ResultSet rs) throws SQLException, DataAccessException {
                 Map<Integer, Employee> employeeMap = new HashMap<>();

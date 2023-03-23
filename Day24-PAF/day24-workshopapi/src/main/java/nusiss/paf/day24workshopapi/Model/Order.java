@@ -1,6 +1,7 @@
 package nusiss.paf.day24workshopapi.Model;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Order {
     
@@ -10,18 +11,21 @@ public class Order {
     private String shipAddress;
     private String notes;
     private Float tax;
+    private List<OrderDetail> orderDetails;
 
     // Constructors
     public Order() {
     }
 
-    public Order(int id, Date orderDate, String customerName, String shipAddress, String notes, Float tax) {
+    public Order(int id, Date orderDate, String customerName, String shipAddress, String notes, Float tax,
+            List<OrderDetail> orderDetails) {
         this.id = id;
         this.orderDate = orderDate;
         this.customerName = customerName;
         this.shipAddress = shipAddress;
         this.notes = notes;
         this.tax = tax;
+        this.orderDetails = orderDetails;
     }
 
     // Getters/Setters
@@ -60,6 +64,12 @@ public class Order {
     }
     public void setTax(Float tax) {
         this.tax = tax;
+    }
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
     
 }
