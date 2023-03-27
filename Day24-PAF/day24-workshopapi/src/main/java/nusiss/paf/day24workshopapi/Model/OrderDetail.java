@@ -60,5 +60,17 @@ public class OrderDetail {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public void add(int quantity) {
+		this.quantity += quantity;
+	}
+	public void add() {
+		this.quantity++;
+	}
+
+    @Override
+    public String toString() {
+        return "OrderDetail [id=" + id + ", orderId=" + orderId + ", product=" + product + ", unitPrice=" + unitPrice
+                + ", discount=" + discount + ", quantity=" + quantity + "]";
+    }
     
 }

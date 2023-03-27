@@ -24,4 +24,11 @@ public class OrderDetailController {
         model.addAttribute("order", orderList);
         return "orderList";
     }
+
+    @GetMapping("/create")
+    public String createOrderWithDetails(Model model) {
+        Order order = new Order();
+        model.addAttribute("order", order);
+        return "orderForm";
+    }
 }

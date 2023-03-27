@@ -42,3 +42,16 @@ from orders as o
 right join order_details as od
 on o.id = od.order_id
 order by o.id;
+
+select o.id as order_id,  o.customer_name, o.ship_address, o.order_date,
+od.product, od.unit_price, od.discount, od.quantity, o.notes, o.tax 
+from orders as o
+left join order_details as od
+on o.id = od.order_id
+order by o.id;
+
+select * 
+from orders 
+inner join order_details 
+on orders.id = order_details.order_id 
+order by orders.id;

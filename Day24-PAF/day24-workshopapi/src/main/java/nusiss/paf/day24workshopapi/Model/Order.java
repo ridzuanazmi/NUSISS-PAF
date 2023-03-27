@@ -72,4 +72,23 @@ public class Order {
         this.orderDetails = orderDetails;
     }
     
+    public void add(OrderDetail orderDetail) {
+        List<OrderDetail> found = this.orderDetails.stream()
+                .filter(od -> od.getProduct().equals(orderDetail.getProduct()))
+                .toList();
+        
+        if (found.isEmpty()) {
+            this.orderDetails.add(orderDetail);
+        } else {
+            found.get(0).add(orderDetail.getQuantity());
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Order [id=" + id + ", orderDate=" + orderDate + ", customerName=" + customerName + ", shipAddress="
+                + shipAddress + ", notes=" + notes + ", tax=" + tax + ", orderDetails=" + orderDetails + "]";
+    }
+
+    
 }

@@ -20,7 +20,9 @@
 <body>
     <h3 class="mt-5 text-center">Order Form</h3>
     <div class="container row-hl mt-3">
-        <form th:action="@{/order}" method="post">
+        <h4 class="mb-3">Customer details</h4>
+        <form th:action="@{/order}" method="post" th:object="${order}">
+
             <div class="form-group">
                 <label for="name">Name: </label>
                 <input class="form-control" type="text" id="name" th:field="*{customerName}"
@@ -45,6 +47,31 @@
                 <textarea class="form-control" id="message" rows="3" th:field="*{notes}"
                 placeholder="Any special requirement for shipping i.e. fragile items etc."></textarea>
             </div>
+
+            <h4>Shopping cart</h4>
+            <div th:if="${#lists.isEmpty(order.orderDetails)}">
+                <h5>Your shopping cart is currently empty</h5>
+            </div>
+
+            <table class="table table-bordered" th:unless="${#lists.isEmpty(order.orderDetails)}">
+                <thead>
+                    <tr>
+                        <td>Product</td>
+                        <td>Unit Price</td>
+                        <td>Discount</td>
+                        <td>Quantity</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="od : ${order.orderDetails}">
+                        <td th:text="${od.product}"></td>
+                        <td th:text="${od.unitPrice}"></td>
+                        <td th:text="${od.discount}"></td>
+                        <td th:text="${od.quantity}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
         </form>
     </div>
 

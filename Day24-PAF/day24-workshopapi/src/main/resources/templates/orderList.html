@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!---------------------------------- BOOSTSTRAP 4 --------------------------------------->
+    <!---------------------------------- BOOSTSTRAP 4 --------------------------------------->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <title>Order List</title>
@@ -15,6 +15,9 @@
 
     <div class="container">
         <h3 class="text-center mt-5">Order List</h3>
+        <a th:href="@{/orders/create}">
+            <button class="btn btn-success my-3">Create new order</button>
+        </a>
         <table border="1" class="table table-striped mt-3">
             <thead>
                 <tr>

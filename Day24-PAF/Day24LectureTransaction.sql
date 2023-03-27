@@ -49,10 +49,12 @@ INSERT INTO book (title) VALUES
 ('Animal Farm');
 -- AND() function to generate a random decimal number between 0 and 1, 
 -- then multiplies it by 5 using the FLOOR() function to round the result down to the nearest integer
-UPDATE book SET quantity = FLOOR(1 + RAND() * 5) where id = 1;
-UPDATE book SET quantity = FLOOR(1 + RAND() * 5) where id = 2;
-UPDATE book SET quantity = FLOOR(1 + RAND() * 5) where id = 3;
-UPDATE book SET quantity = FLOOR(1 + RAND() * 5) where id = 4;
-UPDATE book SET quantity = FLOOR(1 + RAND() * 5) where id = 5;
+UPDATE book SET quantity =5 where id = 1;
+UPDATE book SET quantity =5 where id = 2;
+UPDATE book SET quantity =5 where id = 3;
+UPDATE book SET quantity =5 where id = 4;
+UPDATE book SET quantity =5 where id = 5;
 
 select * from book;
+select * from resv_details;
+select * from resv;
