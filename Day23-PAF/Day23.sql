@@ -107,10 +107,12 @@ select emp.id, emp.first_name, emp.last_name, emp.salary, dep.id dep_id, dep.ful
 from employee as emp 
 left join dependent as dep 
 on emp.id = dep.employee_id;
+
 select emp.id, emp.first_name, emp.last_name, emp.salary, dep.id dep_id, dep.full_name dep_full_name, dep.relationship 
 from employee as emp 
 right join dependent as dep 
 on emp.id = dep.employee_id;
+
 select emp.id, emp.first_name, emp.last_name, emp.salary, dep.id dep_id, dep.full_name dep_full_name, dep.relationship 
 from employee as emp 
 inner join dependent as dep 
