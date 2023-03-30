@@ -10,5 +10,5 @@ public class Day26Lecture2Application{
 	public static void main(String[] args) {
 		SpringApplication.run(Day26Lecture2Application.class, args);
 	}
-
+	
 }

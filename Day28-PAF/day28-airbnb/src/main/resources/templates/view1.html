@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <title>Airbnb Search Results</title>
+</head>
+
+<body>
+    <h1>Airbnb Listings</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Summary</th>
+                <th>Property Type</th>
+                <th>Room Type</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="listing : ${listings}">
+                <td th:text="${listing.name}"></td>
+                <td th:text="${listing.summary}"></td>
+                <td th:text="${listing.propertyType}"></td>
+                <td th:text="${listing.roomType}"></td>
+                <td>
+                    <span style="font-weight: bold;">Street: </span><span
+                        th:text="${listing.address.street}"></span><br>
+                    <span style="font-weight: bold;">Suburb: </span><span
+                        th:text="${listing.address.suburb}"></span><br>
+                    <span style="font-weight: bold;">Area: </span><span
+                        th:text="${listing.address.government_area}"></span><br>
+                    <span style="font-weight: bold;">Market: </span><span
+                        th:text="${listing.address.market}"></span><br>
+                    <span style="font-weight: bold;">Country: </span><span
+                        th:text="${listing.address.country}"></span><br>
+                    <span style="font-weight: bold;">Country code: </span><span
+                        th:text="${listing.address.country_code}"></span><br>
+                    <span style="font-weight: bold;">Location type: </span><span
+                        th:text="${listing.address.location.type}"></span><br>
+                    <span style="font-weight: bold;">Coordinates: </span><span
+                        th:text="${listing.address.location.coordinates[0]}"></span>,
+                    <span th:text="${listing.address.location.coordinates[1]}"></span><br>
+                    <span style="font-weight: bold;">Exact location: </span><span
+                        th:text="${listing.address.location.is_location_exact}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
