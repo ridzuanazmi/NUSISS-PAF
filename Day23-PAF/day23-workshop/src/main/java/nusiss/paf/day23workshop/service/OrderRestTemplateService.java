@@ -19,7 +19,9 @@ public class OrderRestTemplateService {
 
     public List<Order> findOrderById(Integer id) {
         
-        ResponseEntity<List<Order>> orderList = restTemplate.exchange(GET_ORDERBYID_ENDPOINT_URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<Order>>() {
+        ResponseEntity<List<Order>> orderList = restTemplate.exchange(
+            GET_ORDERBYID_ENDPOINT_URL, HttpMethod.GET, null, 
+            new ParameterizedTypeReference<List<Order>>() {
         }, id);
 
         return orderList.getBody();

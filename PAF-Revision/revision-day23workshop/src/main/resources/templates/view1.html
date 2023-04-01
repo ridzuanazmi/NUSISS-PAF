@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Order List</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Order List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer ID</th>
+                    <th>Product ID</th>
+                    <th>Order Date</th>
+                    <th>Total Price</th>
+                    <th>Cost Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.customerId}"></td>
+                    <td th:text="${order.productId}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td th:text="${order.totalPrice}"></td>
+                    <td th:text="${order.costPrice}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
