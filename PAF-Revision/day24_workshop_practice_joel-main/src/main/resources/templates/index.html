@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add an Order Detail</title>
+</head>
+<body>
+    <h1>Add an Order Detail</h1>
+    <h2>Your order ID is: <span th:text="${incomingOrderDetail.orderId}"></span></h2>
+
+
+    <form method="POST" data-th-action="@{/orders/add}" data-th-object="${incomingOrderDetail}">
+        <!-- <input type="hidden" th:field="${nextid}" th:attr="name='id'"/>
+        <label for="productCode">Product Name</label>
+        <input type="text" name="product" placeholder="Product name (e.g. Colgate)" th:field="*{product}" />
+        <div data-th-if="${#fields.hasErrors('product')}">
+            <span data-th-errors="*{product}"></span>
+        </div>
+        <br><br/>
+        <label for="unitPrice">Unit Price</label>
+        <input type="number" name="unitPrice" placeholder="Unit Price (e.g. 10.50)" th:field="*{unitPrice}" />
+        <div data-th-if="${#fields.hasErrors('unitPrice')}">
+            <span data-th-errors="*{unitPrice}"></span>
+        </div>
+        <br><br/>
+        <label for="discount">Discount</label>
+        <input type="number" name="discount" placeholder="Discount (e.g. 0.2)" th:field="*{discount}" />
+        <div data-th-if="${#fields.hasErrors('discount')}">
+            <span data-th-errors="*{discount}"></span>
+        </div>
+        <br><br/>
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" placeholder="Quantity (e.g. 2)" th:field="*{quantity}" />
+        <div data-th-if="${#fields.hasErrors('quantity')}">
+            <span data-th-errors="*{quantity}"></span>
+        </div>
+        <br><br/>
+
+        <div style="margin-top: 2vh; margin-botton: 2vh;" data-th-if="${#lists.isEmpty(listOfOrderDetails)}">
+            <h2>You currently have no ordered items</h2>
+        </div> -->
+        <input type="hidden" th:value="${incomingOrderDetail.id}" name="id" />
+        <input type="hidden" th:value="${incomingOrderDetail.orderId}" name="orderId" />
+        
+
+        <label for="productCode">Product Name:</label>
+        <input type="text" name="product" placeholder="Product name (e.g. Colgate)" th:field="*{product}" style="margin-left: 1vw; width: 25vw;" />
+        <div data-th-if="${#fields.hasErrors('product')}">
+            <span data-th-errors="*{product}"></span>
+        </div>
+        <br><br/>
+        <label for="unitPrice">Unit Price:</label>
+        <input type="number" name="unitPrice" placeholder="Unit Price (e.g. 10.50)" th:field="*{unitPrice}" style="margin-left: 1.4vw; width: 25vw;" />
+        <div data-th-if="${#fields.hasErrors('unitPrice')}">
+            <span data-th-errors="*{unitPrice}"></span>
+        </div>
+        <br><br/>
+        <label for="discount">Discount:</label>
+        <input type="number" name="discount" placeholder="Discount (e.g. 0.2)" value = "0" step="0.01" th:field="*{discount}" style="margin-left: 1.8vw; width: 25vw;" />
+        <div data-th-if="${#fields.hasErrors('discount')}">
+            <span data-th-errors="*{discount}"></span>
+        </div>
+        <br><br/>
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" placeholder="Quantity (e.g. 2)"  value = "1" th:field="*{quantity}" style="margin-left: 1.4vw; width: 25vw;" />
+        <div data-th-if="${#fields.hasErrors('quantity')}">
+            <span data-th-errors="*{quantity}"></span>
+        </div>
+        <br><br/>
+
+        <div style="margin-top: 2vh; margin-botton: 2vh;" data-th-if="${#lists.isEmpty(listOfOrderDetails)}">
+            <h2>You currently have no ordered items</h2>
+        </div>
+
+
+        <table border="1" style="margin-top: 2vh; margin-bottom: 2vh;"
+                    data-th-unless="${#lists.isEmpty(listOfOrderDetails)}">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Order ID</th>
+                    <th>Product</th>
+                    <th>Unit Price</th>
+                    <th>Discount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="i: ${listOfOrderDetails}">
+                    <td><span data-th-text="${i.id}"></span></td>
+                    <td><span data-th-text="${i.orderId}"></span></td>
+                    <td><span data-th-text="${i.product}"></span></td>
+                    <td><span data-th-text="${i.unitPrice}"></span></td>
+                    <td><span data-th-text="${i.discount}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <button type="submit">Add</button>
+            <button type="submit" formmethod="GET" data-th-formaction="@{/orders/shippingaddress}">Next</button>
+        </div>
+        
+    </form>
+
+    
+</body>
+</html>

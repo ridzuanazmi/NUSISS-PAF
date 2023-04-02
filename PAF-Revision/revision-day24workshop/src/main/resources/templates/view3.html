@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <title>Order Details</title>
+</head>
+
+<body>
+
+    <h3 class="text-center p-3">Order details</h3>
+
+    <div class="container mt-2">
+        <div class="d-flex justify-content-center">
+            <form th:action="@{/add-order-details}" method="post" th:object="${od}">
+                <div class="invisible">
+                    <label for="orderId">Order Id</label>
+                    <input class="form-control" type="number" id="orderId" name="orderId" th:field="*{orderId}">
+                </div>
+                <div class="form-group">
+                    <label for="product">Product:</label>
+                    <select class="form-control" name="product" id="product" th:field="*{product}">
+                        <option value="prism tv">prism tv</option>
+                        <option value="air fryer">air fryer</option>
+                        <option value="ps5">ps5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="unitPrice">Unit Price:</label>
+                    <input class="form-control" type="number" id="unitPrice" name="unitPrice" th:field="*{unitPrice}"
+                        placeholder="Enter unit price" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="discount">Discount:</label>
+                    <input class="form-control" type="number" id="discount" name="discount"
+                        placeholder="Enter sales discount" th:field="*{discount}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input class="form-control" type="number" id="quantity" name="quantity" th:field="*{quantity}"
+                        placeholder="Enter quantity" required>
+                </div>
+
+                <div style="margin-top: 2vh; margin-bottom: 2vh;" th:if="${#lists.isEmpty(listOfOd)}">
+                    <h2>You currently have no ordered items</h2>
+                </div>
+
+                <table class="table table-bordered" th:unless="${#lists.isEmpty(listOfOd)}">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Product</th>
+                            <th>Unit Price</th>
+                            <th>Discount</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="od : ${listOfOd}">
+                            <td th:text="${od.orderId}"></td>
+                            <td th:text="${od.product}"></td>
+                            <td th:text="${od.unitPrice}"></td>
+                            <td th:text="${od.discount}"></td>
+                            <td th:text="${od.quantity}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-primary" type="submit">Add</button>
+                <button class="btn btn-success" type="submit" formmethod="GET" data-th-formaction="@{/checkout}">
+                    Checkout
+                </button>
+                <a class="btn btn-secondary" th:href="@{/order}">Home</a>
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Order Form</h1>
+
+    <!-- private Date orderDate;
+    private String customerName;
+    private String shipAddress;
+    private String notes;
+    private Float tax; -->
+
+		<form method="POST" data-th-action="@{/orders/checkout}" data-th-object="${shippingdetails}">
+			<table>
+				<tr>
+					<td>Name:</td>
+					<td>
+						<input type="text" name="customerName" size="30" placeholder="Your name" 
+							data-th-field="*{customerName}">
+						<div data-th-if="${#fields.hasErrors('customerName')}">
+							<span data-th-errors="*{customerName}"></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Shipping Address:</td>
+					<td>
+						<input type="text" name="shipAddress" size="30" placeholder="Address to ship the order to"
+							data-th-field="*{shipAddress}">
+						<div data-th-if="${#fields.hasErrors('shipAddress')}">
+							<span data-th-errors="*{shipAddress}"></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+                    <td>Order Date:</td>
+					<td>
+						<input type="date" name="orderDate" size="30" placeholder="Order Date"
+							data-th-field="*{orderDate}">
+						<div data-th-if="${#fields.hasErrors('orderDate')}">
+							<span data-th-errors="*{orderDate}"></span>
+						</div>
+					</td>
+				</tr>
+                <tr>
+                    <td>Notes:</td>
+					<td>
+						<input type="text" name="notes" size="30" placeholder="Special notes for the order"
+							data-th-field="*{notes}">
+						<div data-th-if="${#fields.hasErrors('notes')}">
+							<span data-th-errors="*{notes}"></span>
+						</div>
+					</td>
+				</tr>
+                <tr>
+                    <td>Tax:</td>
+					<td>
+						<input type="number" name="tax" size="30" step="0.01" placeholder="Please input tax amount"
+							data-th-field="*{tax}">
+						<div data-th-if="${#fields.hasErrors('tax')}">
+							<span data-th-errors="*{tax}"></span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<button type="submit" formmethod="GET" data-th-formaction="@{/orders/add}">Back</button>
+						<button type="submit">Checkout</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+    
+</body>
+</html>

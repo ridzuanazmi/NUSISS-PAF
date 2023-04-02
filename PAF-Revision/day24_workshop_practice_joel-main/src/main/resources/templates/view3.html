@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--private int id; 
+        private Date orderDate;
+    private String customerName;
+    private String shipAddress;
+    private String notes;
+    private Float tax; -->
+
+    <h1>Invoice</h1>
+
+		<table data-th-object="${orderform}" style="margin-botton: 3vh;">
+			<tr>
+				<td>Invoice id:</td>
+				<td>
+					<span data-th-text="*{orderId}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td>
+					<span data-th-text="*{customerName}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Address:</td>
+				<td>
+					<span data-th-text="*{shipAddress}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Order Date:</td>
+				<td>
+					<span data-th-text="*{orderDate}"></span>
+				</td>
+			</tr>
+            <tr>
+				<td>Notes:</td>
+				<td>
+					<span data-th-text="*{notes}"></span>
+				</td>
+			</tr>
+            <tr>
+				<td>Tax:</td>
+				<td>
+					<span data-th-text="*{tax}"></span>
+				</td>
+			</tr>
+		</table>
+
+		<form method="GET" data-th-action="@{/orders}">
+			<button type="submit">Back</button>
+		</form>
+    
+</body>
+</html>
