@@ -33,8 +33,8 @@ public class TaskRepository {
      */
     public Document insertTask(JsonObject task) {
 
-        Document toInsert = Document.parse(task.toString());
-        toInsert.put("dueDate", Date.valueOf(toInsert.getString("dueDate")));
+        Document toInsert = Document.parse(task.toString()); // Convert it into Json fron JsonObject
+        toInsert.put("dueDate", Date.valueOf(toInsert.getString("dueDate"))); // Just to change the dueDate field
 
         return mongoTemplate.insert(toInsert, C_ACTIVITIES);
     }
