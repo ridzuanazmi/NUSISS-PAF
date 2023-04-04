@@ -39,6 +39,12 @@ public class TaskRepository {
         return mongoTemplate.insert(toInsert, C_ACTIVITIES);
     }
 
+    public Document getShows() {
+
+        Query query = Query.query(Criteria.where("id").is(2));
+        return mongoTemplate.findOne(query, Document.class, "tvshows");
+    }
+
     /*
      * db.activities.find({
      *  task: {

@@ -32,8 +32,11 @@ public class Day27LectureApplication implements	CommandLineRunner{
 		//taskRepo.updateActivity();
 		//taskRepo.deleteActivitiesWithoutTask();
 		
-		//Document result = taskRepo.insertTask(task);
-		//System.out.printf(">>> inserted result: ", result);
+		// Document result = taskRepo.insertTask(task);
+		// System.out.printf(">>> inserted result: ", result);
+
+		Document result = taskRepo.getShows();
+		System.out.printf(">>>> Show with id %d is %s".formatted(result.get("id"), result));
 	}
 
 }
