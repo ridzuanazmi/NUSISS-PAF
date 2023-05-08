@@ -85,7 +85,7 @@ public class RsvpController {
 
         if (createRsvp) {
             return ResponseEntity.status(201)
-                    .body("RSVP record Successfully created");
+                    .body(rsvp);
         } else {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("Could not create RSVP record");

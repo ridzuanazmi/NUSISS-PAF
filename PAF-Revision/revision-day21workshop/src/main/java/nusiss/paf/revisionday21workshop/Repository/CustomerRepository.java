@@ -70,7 +70,7 @@ public class CustomerRepository {
     }
 
     // Returns an Order object from orders table via customer_id
-    // This method works, but have to query string rows manually in, instead of using the SqlRowSet
+    // This method works, but have to type query string rows manually in, instead of using the SqlRowSet
     public List<Order> getOrderById2(Integer id) {
         return jdbcTemplate.query(SELECT_ORDERS_BYID_SQL, BeanPropertyRowMapper.newInstance(Order.class), id);
     }
